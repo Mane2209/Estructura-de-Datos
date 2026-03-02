@@ -1,0 +1,80 @@
+// Ejemplorecursividad.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
+//
+
+#include <iostream>
+using namespace std;
+int factorial(int n);
+int sum_impares(int num);
+double serie(double x, int num);
+void menu();
+
+
+int main()
+{
+    int num, suma, op, x;
+    double resultado;
+    do {
+        menu();
+        cin >> op;
+        switch (op)
+        {
+        case 1:
+            cout << "ingrese el numero a calcular el factorial: ";
+            cin >> num;
+            cout << "El factorial de " << num << "es: " << factorial(num)<< endl;
+            break;
+        case 2:
+            cout << "Ingrese valor de hasta cuando quiere sumar: " << endl;
+            cin >> num;
+            suma = sum_impares(num);
+            cout << "La suma de impares es: " << suma << endl;
+            break;
+        case 3:
+            cout << "Ingrese valor de X: ";
+            cin >> x;
+            cout << "Ingrese valor de num: ";
+            cin >> num;
+            resultado = serie(x, num);
+            cout << "La suma de la serie es: " << resultado << endl;
+            break;
+        default:
+            cout << "ERROR: ";
+            break;
+        }
+    } while (op != 0);
+}
+
+void menu() {
+    cout << "Seleccione funcion que desea." << endl;
+    cout << "1. Factorial " << endl;
+    cout << "2. Ejercicio de suma impares " << endl;
+    cout << "3. Ejercicio de expresion de horner " << endl;
+    cout << "0. Salir  " << endl;
+    cout << "Opcion: " << endl;
+}
+int factorial(int n) {
+    if ((n == 0) || (n == 1)) {
+        return 1;
+    }
+    else {
+        return factorial(n - 1) * n;
+    }
+}
+double serie(double x, int n) {
+    if (n == 0) {
+        return 0;
+    }
+    else {
+        return x * (1 + serie(x, n- 1));
+    }
+}
+int sum_impares(int num){
+    if (num <= 0) {
+        return 0;
+    } if (num % 2 != 0) {
+        return num + sum_impares(num - 1);
+    }
+    else {
+        return sum_impares(num - 1);
+    }
+}
