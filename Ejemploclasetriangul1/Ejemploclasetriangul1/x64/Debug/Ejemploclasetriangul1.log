@@ -1,0 +1,17 @@
+﻿  Ejemploclasetriangul1.cpp
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Ejemploclasetriangul1.cpp(2,10): fatal  error C1083: No se puede abrir el archivo incluir: 'Triangulo.h': No such file or directory
+  Triangulo.cpp
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.h(15,13): error C2062: tipo 'void' inesperado
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.h(15,18): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.h(16,4): error C2523: 'Triangulo::triangulo::~Triangulo': etiqueta de destructor sin correspondencia
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.cpp(3,12): error C2600: 'Triangulo::Triangulo': no se puede definir una función miembro especial generada por el compilador (se debe declarar primero en la clase)
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.cpp(5,2): error C2065: 'base': identificador no declarado
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.cpp(3,12): message : Diagnóstico en la función 'Triangulo::Triangulo(void)' generada por el compilador
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.cpp(6,2): error C2065: 'altura': identificador no declarado
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.cpp(3,12): message : Diagnóstico en la función 'Triangulo::Triangulo(void)' generada por el compilador
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.cpp(9,13): error C2600: 'Triangulo::~Triangulo': no se puede definir una función miembro especial generada por el compilador (se debe declarar primero en la clase)
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.cpp(13,18): error C2039: "calculararea": no es un miembro de "Triangulo"
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.h(2,7): message : vea la declaración de 'Triangulo'
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.cpp(15,2): error C2065: 'area': identificador no declarado
+C:\Users\UPSALAB\source\repos\Ejemploclasetriangul1\Ejemploclasetriangul1\Triangulo.cpp(16,9): error C2065: 'area': identificador no declarado
+  Generando código...
