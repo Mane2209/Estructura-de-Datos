@@ -1,0 +1,125 @@
+// ejemplomatriz.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
+//
+
+#include <iostream>
+#define MAXCOL 20
+#define MAXROW 20
+using namespace std;
+
+void menu();
+void cargar(int matrix[MAXROW][MAXCOL], int n, int s);
+void mostrar(int matrix[MAXROW][MAXCOL], int n, int s);
+void matrizMagica(int matrix[MAXROW][MAXCOL], int n, int s);
+
+
+int main()
+{
+	int tamrow, tamcol, matriz[MAXROW][MAXCOL];
+	int op;
+	do {
+		menu();
+		cin >> op;
+		switch (op) {
+		case 1:
+			do {
+				cout << "Ingrese el numero de filas: ";
+				cin >> tamrow;
+			} while ((tamrow <= 0) || (tamrow > MAXROW));
+			break;
+		case 2:
+			do {
+				cout << "Ingresar el numero de columnas: ";
+				cin >> tamcol;
+			} while ((tamcol <= 0) || (tamcol > MAXCOL));
+			break;
+		case 3:
+			cargar(matriz, tamrow, tamcol);
+			break;
+		case 4:
+			mostrar(matriz, tamrow, tamcol);
+			break;
+		case 5:
+			matrizMagica(matriz, tamrow, tamcol);
+			break;
+		default:
+			cout << "Opcion no valida. " << endl;
+			break;
+		}
+	} while (op >= 1 );
+	cout << "Fin del programa." << endl;
+}
+void matrizMagica(int matrix[MAXROW][MAXCOL], int n, int s) {
+
+	if (n != s) {
+		cout << "La matriz no es cuadrada, no puede ser magica." << endl;
+		return;
+	}
+
+	int sumaRef = 0;
+	for (int j = 1; j <= s; j++) {
+		sumaRef += matrix[1][j];
+	}
+	for (int i = 1; i <= n; i++) {
+		int sumaFila = 0;
+		for (int j = 1; j <= s; j++) {
+			sumaFila += matrix[i][j];
+		}
+		if (sumaFila != sumaRef) {
+			cout << "No es matriz magica." << endl;
+			return;
+		}
+	}
+
+	// verificar columnas
+	for (int j = 1; j <= s; j++) {
+		int sumaCol = 0;
+		for (int i = 1; i <= n; i++) {
+			sumaCol += matrix[i][j];
+		}
+		if (sumaCol != sumaRef) {
+			cout << "No es matriz magica." << endl;
+			return;
+		}
+	}
+
+	int diag1 = 0;
+	int diag2 = 0;
+
+	for (int i = 1; i <= n; i++) {
+		diag1 += matrix[i][i];
+		diag2 += matrix[i][n - i + 1];
+	}
+
+	if (diag1 == sumaRef && diag2 == sumaRef)
+		cout << "La matriz ES MAGICA." << endl;
+	else
+		cout << "No es matriz magica." << endl;
+}
+
+void cargar(int matrix[MAXROW][MAXCOL], int n, int s) {
+	for (int i = 1; i <= n; i++) {
+		for (int k = 1; k <= s; k++) {
+			cout << "Matriz[" << i << "," << k << "]";
+			cin >> matrix[i][k];
+		}
+	}
+}
+void mostrar(int matrix[MAXROW][MAXCOL], int n, int s) {
+	cout << "Matriz A: " << endl;
+	for (int i = 1; i <= n; i++) {
+		cout << "| ";
+		for (int k = 1; k <= s; k++) {
+			cout << matrix[i][k] << " ";
+		}
+		cout << "|";
+		cout << endl;
+	}
+}
+void menu() {
+	cout << "1. Ingresar numero de filas matriz: " << endl;
+	cout << "2. Ingresar numero de columnas matriz: " << endl;
+	cout << "3. Cargar matriz: " << endl;
+	cout << "4. Mostrar matriz: " << endl;
+	cout << "5. Matriz Magica" << endl; 
+	cout << "0. Salir. " << endl; 
+}
