@@ -1,0 +1,7 @@
+﻿  arraysarrays.cpp
+C:\Users\UPSALAB\source\repos\arraysarrays\arraysarrays\arraysarrays.cpp(46,13): error C2660: 'Vector::mostrar': la función no acepta 1 argumentos
+C:\Users\UPSALAB\source\repos\arraysarrays\arraysarrays\Vector.h(15,7): message : vea la declaración de 'Vector::mostrar'
+C:\Users\UPSALAB\source\repos\arraysarrays\arraysarrays\arraysarrays.cpp(46,13): message : al hacer coincidir la lista de argumentos '(int)'
+C:\Users\UPSALAB\source\repos\arraysarrays\arraysarrays\arraysarrays.cpp(52,20): error C2660: 'Vector::mostrar': la función no acepta 1 argumentos
+C:\Users\UPSALAB\source\repos\arraysarrays\arraysarrays\Vector.h(15,7): message : vea la declaración de 'Vector::mostrar'
+C:\Users\UPSALAB\source\repos\arraysarrays\arraysarrays\arraysarrays.cpp(52,20): message : al hacer coincidir la lista de argumentos '(int)'
