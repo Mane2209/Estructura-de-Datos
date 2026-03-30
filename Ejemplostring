@@ -1,0 +1,56 @@
+int longitud, cont, pos, op;
+	char aux;
+	string var1, var2, nombre; 
+	cout<<endl<<"Ejemplo de uso de getline para ingresar cadena de caracteres";
+	cout<<endl<<"Ingrese un nombre: ";
+	getline(cin,nombre);
+	do {
+		cout << "Menu" << endl;
+		cout << "1. Contar vocales " << endl;
+		cout << "2. Longitud de un string " << endl;
+		cout << "3. Extraer una parte " << endl;
+		cout << "4. Intercambiar string " << endl;
+		cout << "5. Comparar string " << endl;
+		cout << "6. Encontrar caracter " << endl;
+		cout << "7. Invertir " << endl;
+		cout << "8. Determinar si es capicua " << endl;
+		cout << "9. Quitar vocales " << endl;
+		cout << "0. Salir " << endl;
+		cout << "Seleccione una opcion: " << endl;
+		cin >> op;
+		switch (op) {
+		case 0:
+			cout << "FINALIZAR PROGRAMA..." << endl;
+			break;
+		case 1:
+			Numerodevocales(nombre, cont);
+			break;
+		case 2:
+			Longitudstring(longitud, nombre);
+			break;
+		case 3:
+			extraerparte(pos, nombre, longitud);
+			break;
+		case 4:
+			intercambiarstring(nombre, var2);
+			break;
+		case 5:
+			compararstring(nombre, var2);
+			break;
+		case 6:
+			encontrarcaracter(var2, longitud);
+			break;
+		case 7:
+			invertir(nombre, var2, longitud, aux);
+			break;
+		case 8:
+			capicua(nombre, var2);
+			break;
+		case 9:
+			quitarvocal(longitud, cont, var2, nombre);
+			break;
+		default: 
+			cout << "OPCION NO DISPONIBLE..." << endl;
+			break;
+		} 
+	}while (op == 0);
