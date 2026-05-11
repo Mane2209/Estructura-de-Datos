@@ -1,0 +1,380 @@
+import tkinter as tk
+from tkinter import messagebox
+from datetime import datetime
+
+
+# =========================================================
+# FUNCIONES
+# =========================================================
+def bolivianos_a_soles():
+    try:
+        bolivianos = float(entry_monto.get())
+        compra_usdt_bs = float(entry_compra_usdt_bs.get())
+        venta_usdt_soles = float(entry_venta_usdt_soles.get())
+
+        usdt = bolivianos / compra_usdt_bs
+        soles = usdt * venta_usdt_soles
+
+        resultado.set(
+            f"╔══════════════════════════════╗\n"
+            f" CONVERSIÓN EXITOSA\n"
+            f"╚══════════════════════════════╝\n\n"
+            f"🇧🇴 Bs {bolivianos:.2f}\n"
+            f"        ⇩\n"
+            f"💎 {usdt:.4f} USDT\n"
+            f"        ⇩\n"
+            f"🇵🇪 S/ {soles:.2f}"
+        )
+
+    except:
+        messagebox.showerror(
+            "ERROR",
+            "⚠ Ingrese solamente números válidos."
+        )
+
+
+def soles_a_bolivianos():
+    try:
+        soles = float(entry_monto.get())
+        compra_usdt_bs = float(entry_compra_usdt_bs.get())
+        venta_usdt_soles = float(entry_venta_usdt_soles.get())
+
+        usdt = soles / venta_usdt_soles
+        bolivianos = usdt * compra_usdt_bs
+
+        resultado.set(
+            f"╔══════════════════════════════╗\n"
+            f" CONVERSIÓN EXITOSA\n"
+            f"╚══════════════════════════════╝\n\n"
+            f"🇵🇪 S/ {soles:.2f}\n"
+            f"        ⇩\n"
+            f"💎 {usdt:.4f} USDT\n"
+            f"        ⇩\n"
+            f"🇧🇴 Bs {bolivianos:.2f}"
+        )
+
+    except:
+        messagebox.showerror(
+            "ERROR",
+            "⚠ Ingrese solamente números válidos."
+        )
+
+
+# =========================================================
+# RELOJ
+# =========================================================
+def actualizar_hora():
+    hora = datetime.now().strftime("%H:%M:%S")
+    reloj.config(text=f"◉ {hora}")
+    ventana.after(1000, actualizar_hora)
+
+
+# =========================================================
+# EFECTOS
+# =========================================================
+def hover_entrar(e, boton, color):
+    boton.config(bg=color)
+
+
+def hover_salir(e, boton, color):
+    boton.config(bg=color)
+
+
+# =========================================================
+# VENTANA PRINCIPAL
+# =========================================================
+ventana = tk.Tk()
+ventana.title("ULTRACAMBIO")
+ventana.state("zoomed")
+ventana.configure(bg="#020617")
+
+# =========================================================
+# COLORES
+# =========================================================
+bg_principal = "#020617"
+bg_secundario = "#0f172a"
+bg_panel = "#111827"
+
+cyan = "#22d3ee"
+azul = "#2563eb"
+morado = "#7c3aed"
+texto = "#e2e8f0"
+gris = "#94a3b8"
+
+# =========================================================
+# HEADER
+# =========================================================
+header = tk.Frame(
+    ventana,
+    bg="#030b1d",
+    height=120,
+    bd=0
+)
+header.pack(fill="x")
+
+tk.Label(
+    header,
+    text="◈ BANCO FASSIL ◈",
+    font=("Segoe UI Black", 30),
+    fg=cyan,
+    bg="#030b1d"
+).pack(pady=(18, 0))
+
+tk.Label(
+    header,
+    text="Bs ↔ USDT ↔ Soles",
+    font=("Segoe UI", 15, "bold"),
+    fg="#60a5fa",
+    bg="#030b1d"
+).pack()
+
+# =========================================================
+# RELOJ
+# =========================================================
+reloj = tk.Label(
+    ventana,
+    font=("Segoe UI", 13, "bold"),
+    fg=cyan,
+    bg=bg_principal
+)
+reloj.pack(pady=10)
+
+actualizar_hora()
+
+# =========================================================
+# CONTENEDOR CENTRAL
+# =========================================================
+contenedor = tk.Frame(
+    ventana,
+    bg=bg_secundario,
+    bd=2,
+    relief="ridge"
+)
+contenedor.pack(
+    padx=40,
+    pady=20,
+    fill="both",
+    expand=True
+)
+
+# =========================================================
+# PANEL IZQUIERDO
+# =========================================================
+panel_izquierdo = tk.Frame(
+    contenedor,
+    bg=bg_panel,
+    width=500
+)
+panel_izquierdo.pack(
+    side="left",
+    fill="both",
+    expand=True,
+    padx=25,
+    pady=25
+)
+
+# =========================================================
+# PANEL DERECHO
+# =========================================================
+panel_derecho = tk.Frame(
+    contenedor,
+    bg="#09111f",
+    width=600
+)
+panel_derecho.pack(
+    side="right",
+    fill="both",
+    expand=True,
+    padx=25,
+    pady=25
+)
+
+# =========================================================
+# TITULO PANEL
+# =========================================================
+tk.Label(
+    panel_izquierdo,
+    text="⚡ PANEL DE CONTROL",
+    font=("Segoe UI Black", 22),
+    fg=cyan,
+    bg=bg_panel
+).pack(pady=25)
+
+# =========================================================
+# ESTILOS
+# =========================================================
+label_style = {
+    "font": ("Segoe UI", 13, "bold"),
+    "fg": texto,
+    "bg": bg_panel
+}
+
+entry_style = {
+    "font": ("Segoe UI", 18),
+    "justify": "center",
+    "bg": "#020617",
+    "fg": "white",
+    "insertbackground": cyan,
+    "relief": "flat",
+    "width": 25,
+    "bd": 5
+}
+
+# =========================================================
+# CAMPOS
+# =========================================================
+tk.Label(
+    panel_izquierdo,
+    text="💵 MONTO",
+    **label_style
+).pack(pady=(15, 5))
+
+entry_monto = tk.Entry(panel_izquierdo, **entry_style)
+entry_monto.pack(ipady=12)
+
+tk.Label(
+    panel_izquierdo,
+    text="📈 COMPRA USDT EN Bs",
+    **label_style
+).pack(pady=(25, 5))
+
+entry_compra_usdt_bs = tk.Entry(panel_izquierdo, **entry_style)
+entry_compra_usdt_bs.pack(ipady=12)
+
+tk.Label(
+    panel_izquierdo,
+    text="💲 VENTA USDT EN SOLES",
+    **label_style
+).pack(pady=(25, 5))
+
+entry_venta_usdt_soles = tk.Entry(panel_izquierdo, **entry_style)
+entry_venta_usdt_soles.pack(ipady=12)
+
+# =========================================================
+# BOTONES
+# =========================================================
+frame_botones = tk.Frame(
+    panel_izquierdo,
+    bg=bg_panel
+)
+frame_botones.pack(pady=40)
+
+btn1 = tk.Button(
+    frame_botones,
+    text="⚡ Bs → Soles",
+    font=("Segoe UI Black", 14),
+    bg=azul,
+    fg="white",
+    activebackground="#3b82f6",
+    activeforeground="white",
+    relief="flat",
+    cursor="hand2",
+    width=18,
+    height=2,
+    command=bolivianos_a_soles
+)
+
+btn1.grid(row=0, column=0, padx=10)
+
+btn2 = tk.Button(
+    frame_botones,
+    text="⚡ Soles → Bs",
+    font=("Segoe UI Black", 14),
+    bg=morado,
+    fg="white",
+    activebackground="#8b5cf6",
+    activeforeground="white",
+    relief="flat",
+    cursor="hand2",
+    width=18,
+    height=2,
+    command=soles_a_bolivianos
+)
+
+btn2.grid(row=0, column=1, padx=10)
+
+# =========================================================
+# HOVER
+# =========================================================
+btn1.bind(
+    "<Enter>",
+    lambda e: hover_entrar(e, btn1, "#3b82f6")
+)
+
+btn1.bind(
+    "<Leave>",
+    lambda e: hover_salir(e, btn1, azul)
+)
+
+btn2.bind(
+    "<Enter>",
+    lambda e: hover_entrar(e, btn2, "#8b5cf6")
+)
+
+btn2.bind(
+    "<Leave>",
+    lambda e: hover_salir(e, btn2, morado)
+)
+
+# =========================================================
+# PANEL DERECHO RESULTADO
+# =========================================================
+tk.Label(
+    panel_derecho,
+    text="📊 RESULTADO EN TIEMPO REAL",
+    font=("Segoe UI Black", 22),
+    fg=cyan,
+    bg="#09111f"
+).pack(pady=25)
+
+resultado = tk.StringVar()
+resultado.set(
+    "╔══════════════════════════╗\n"
+    "SISTEMA ESPERANDO DATOS\n"
+    "╚══════════════════════════╝"
+)
+
+frame_resultado = tk.Frame(
+    panel_derecho,
+    bg="#020617",
+    bd=3,
+    relief="ridge"
+)
+
+frame_resultado.pack(
+    padx=30,
+    pady=20,
+    fill="both",
+    expand=True
+)
+
+frame_resultado.pack_propagate(False)
+
+tk.Label(
+    frame_resultado,
+    textvariable=resultado,
+    font=("Consolas", 20, "bold"),
+    fg="#38bdf8",
+    bg="#020617",
+    justify="center"
+).pack(expand=True)
+
+# =========================================================
+# FOOTER
+# =========================================================
+footer = tk.Frame(
+    ventana,
+    bg="#030b1d",
+    height=45
+)
+footer.pack(fill="x")
+
+tk.Label(
+    footer,
+    text="⚙ NEURAL FINANCE ENGINE • v3.0 • CYBER MODE ACTIVATED",
+    font=("Segoe UI", 10, "bold"),
+    fg=gris,
+    bg="#030b1d"
+).pack(pady=12)
+
+ventana.mainloop()
