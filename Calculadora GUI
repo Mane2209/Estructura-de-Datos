@@ -11,19 +11,27 @@ def bolivianos_a_soles():
         bolivianos = float(entry_monto.get())
         compra_usdt_bs = float(entry_compra_usdt_bs.get())
         venta_usdt_soles = float(entry_venta_usdt_soles.get())
+        comision = float(entry_comision.get())
 
         usdt = bolivianos / compra_usdt_bs
         soles = usdt * venta_usdt_soles
 
+        descuento = soles * (comision / 100)
+        total_final = soles - descuento
+
         resultado.set(
             f"╔══════════════════════════════╗\n"
-            f" CONVERSIÓN EXITOSA\n"
+            f"CONVERSIÓN EXITOSA\n"
             f"╚══════════════════════════════╝\n\n"
             f"🇧🇴 Bs {bolivianos:.2f}\n"
             f"        ⇩\n"
             f"💎 {usdt:.4f} USDT\n"
             f"        ⇩\n"
-            f"🇵🇪 S/ {soles:.2f}"
+            f"🇵🇪 S/ {soles:.2f}\n\n"
+            f"💸 Comisión: {comision:.2f}%\n"
+            f"➖ Descuento: S/ {descuento:.2f}\n\n"
+            f"✅ TOTAL FINAL:\n"
+            f"💰 S/ {total_final:.2f}"
         )
 
     except:
@@ -38,19 +46,27 @@ def soles_a_bolivianos():
         soles = float(entry_monto.get())
         compra_usdt_bs = float(entry_compra_usdt_bs.get())
         venta_usdt_soles = float(entry_venta_usdt_soles.get())
+        comision = float(entry_comision.get())
 
         usdt = soles / venta_usdt_soles
         bolivianos = usdt * compra_usdt_bs
 
+        recargo = bolivianos * (comision / 100)
+        total_final = bolivianos + recargo
+
         resultado.set(
             f"╔══════════════════════════════╗\n"
-            f" CONVERSIÓN EXITOSA\n"
+            f"CONVERSIÓN EXITOSA\n"
             f"╚══════════════════════════════╝\n\n"
             f"🇵🇪 S/ {soles:.2f}\n"
             f"        ⇩\n"
             f"💎 {usdt:.4f} USDT\n"
             f"        ⇩\n"
-            f"🇧🇴 Bs {bolivianos:.2f}"
+            f"🇧🇴 Bs {bolivianos:.2f}\n\n"
+            f"💸 Comisión: {comision:.2f}%\n"
+            f"➕ Recargo: Bs {recargo:.2f}\n\n"
+            f"✅ TOTAL FINAL:\n"
+            f"💰 Bs {total_final:.2f}"
         )
 
     except:
@@ -84,7 +100,7 @@ def hover_salir(e, boton, color):
 # VENTANA PRINCIPAL
 # =========================================================
 ventana = tk.Tk()
-ventana.title("ULTRACAMBIO")
+ventana.title("Sistema Cambista")
 ventana.state("zoomed")
 ventana.configure(bg="#020617")
 
@@ -114,7 +130,7 @@ header.pack(fill="x")
 
 tk.Label(
     header,
-    text="◈ BANCO FASSIL ◈",
+    text="◈ SISTEMA CAMBISTA ◈",
     font=("Segoe UI Black", 30),
     fg=cyan,
     bg="#030b1d"
@@ -251,6 +267,18 @@ entry_venta_usdt_soles = tk.Entry(panel_izquierdo, **entry_style)
 entry_venta_usdt_soles.pack(ipady=12)
 
 # =========================================================
+# COMISIÓN
+# =========================================================
+tk.Label(
+    panel_izquierdo,
+    text="💸 COMISIÓN (%)",
+    **label_style
+).pack(pady=(25, 5))
+
+entry_comision = tk.Entry(panel_izquierdo, **entry_style)
+entry_comision.pack(ipady=12)
+
+# =========================================================
 # BOTONES
 # =========================================================
 frame_botones = tk.Frame(
@@ -328,6 +356,7 @@ tk.Label(
 ).pack(pady=25)
 
 resultado = tk.StringVar()
+
 resultado.set(
     "╔══════════════════════════╗\n"
     "SISTEMA ESPERANDO DATOS\n"
@@ -371,7 +400,7 @@ footer.pack(fill="x")
 
 tk.Label(
     footer,
-    text="⚙ NEURAL FINANCE ENGINE • v3.0 • CYBER MODE ACTIVATED",
+    text="⚙ Sistema Financiero de Conversión • Premium Edition",
     font=("Segoe UI", 10, "bold"),
     fg=gris,
     bg="#030b1d"
